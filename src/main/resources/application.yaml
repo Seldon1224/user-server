@@ -1,0 +1,20 @@
+server:
+  port: 8081
+  
+spring:
+  thymeleaf:
+    cache: true
+  devtools:
+    restart:
+      enabled: true
+      additional-paths:
+      - src/main/java
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+# DB configuration
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example?serverTimezone=Asia/Shanghai
+    username: springuser
+    password: ThePassword
