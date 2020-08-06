@@ -12,12 +12,11 @@ public class MyMilvus {
     String host = "localhost";
     int port = 19530;
     final String collectionName = "hongmo_vectors"; // collection name
-    final long dimension = 8; // dimension of each vector
+    final long dimension = 17*320; // dimension of each vector
     final long indexFileSize = 1024; // maximum size (in MB) of each index file
     final MetricType metricType = MetricType.IP;
-    final int topK = 2;
+    final int topK = 10;
     MilvusClient client;
-
 
 
     public void ConnectMilvus(){
@@ -65,6 +64,7 @@ public class MyMilvus {
         // We choose IVF_SQ8 as our index type here. Refer to IndexType javadoc for a
         // complete explanation of different index types
         final IndexType indexType = IndexType.IVF_SQ8;
+        //final IndexType indexType = IndexType.HNSW;
         // Each index type has its optional parameters you can set. Refer to the Milvus documentation
         // for how to set the optimal parameters based on your needs.
         JsonObject indexParamsJson = new JsonObject();
@@ -79,9 +79,10 @@ public class MyMilvus {
 
     //return the most similar vector's id
     public Long SearchVector(List<List<Float>>  vectors){
+        ConnectMilvus();
         JsonObject searchParamsJson = new JsonObject();
 
-        searchParamsJson.addProperty("nprobe", 20);
+        searchParamsJson.addProperty("nprobe", 512);
         vectors =
                 vectors.stream().map(MyMilvus::normalizeVector).collect(Collectors.toList());
 
@@ -94,7 +95,8 @@ public class MyMilvus {
         SearchResponse searchResponse = client.search(searchParam);
         List<List<Long>> resultIds = searchResponse.getResultIdsList();
         List<List<Float>> resultDistances = searchResponse.getResultDistancesList();
-
+        if(resultDistances.get(0).get(0) < 0.6f)
+            resultIds = null;
         System.out.println(searchResponse);
         if(resultIds == null)
             return 0L;

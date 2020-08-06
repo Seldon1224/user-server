@@ -77,17 +77,8 @@ class UserServerApplicationTests {
 		}
 		// Check whether we are connected
 		boolean connected = client.isConnected();
-		// Create a collection with the following collection mapping
-		final String collectionName = "hongmo_vectors"; // collection name
-		final long dimension = 8; // dimension of each vector
-		final long indexFileSize = 1024; // maximum size (in MB) of each index file
-		final MetricType metricType = MetricType.IP; // we choose IP (Inner Product) as our metric type
-		CollectionMapping collectionMapping =
-				new CollectionMapping.Builder(collectionName, dimension)
-						.withIndexFileSize(indexFileSize)
-						.withMetricType(metricType)
-						.build();
-		client.dropCollection(collectionName);
+		ListCollectionsResponse listCollectionsResponse  = client.listCollections();
+		System.out.println(listCollectionsResponse.getCollectionNames().toString());
 	}
 
 }

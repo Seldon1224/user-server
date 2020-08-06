@@ -8,5 +8,7 @@ public interface UserRepository extends CrudRepository<User, Long>{
 
     @Query(value = "select * from hmsb_user where vector_id=?1"
             , nativeQuery = true)
-    public User findUserByVectorId(Long vectorId);
+    User findUserByVectorId(Long vectorId);
+
+
 }

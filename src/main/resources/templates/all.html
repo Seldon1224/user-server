@@ -16,18 +16,18 @@
     <br><br>
 
 <table class="table table-bordered table table-hover" style="width:800px">
-    <tr style="color:red">
-        <th>NAME</th>
-        <th>VectorId</th>
-    </tr>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.name}">Jack</td>
-        <td th:text="${user.vectorId}">15</td>
-    </tr>
+        <tr style="color:red">
+            <th>NAME</th>
+            <th>VectorId</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.name}">Jack</td>
+            <td th:text="${user.vectorId}">15</td>
+        </tr>
 </table>
 
 <p>
-    <a href="/greeting"><button type="button" class="btn btn-primary">Return to home</button></a>
+    <a href="/signup"><button type="button" class="btn btn-primary">Return to home</button></a>
 </p>
 
 

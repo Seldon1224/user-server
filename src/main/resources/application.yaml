@@ -1,6 +1,8 @@
 server:
   port: 8081
-  
+  tomcat:
+    max-http-form-post-size: -1
+
 spring:
   thymeleaf:
     cache: true
@@ -12,8 +14,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
-# DB configuration
+  security :
+    user:
+      name: admin
+      password: admin
+  # DB configuration
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example?serverTimezone=Asia/Shanghai
     username: springuser
