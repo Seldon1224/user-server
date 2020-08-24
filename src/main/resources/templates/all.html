@@ -6,23 +6,36 @@
     <title>User list</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">
+    <style>
+        body{
+            background-size: auto;
+        }
+    </style>
 </head>
 
-<body>
+<body background="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3650402555,1214993986&fm=26&gp=0.jpg">
 
 
     <br><br>
-<h2 style="color:green">All Records in Table user</h2>
+<h2 style="color:green;font-style: inherit" >所有用户数据</h2>
     <br><br>
 
-<table class="table table-bordered table table-hover" style="width:800px">
-        <tr style="color:red">
-            <th>NAME</th>
-            <th>VectorId</th>
+<table class="table table-bordered table-hover" style="width:800px">
+        <tr style="color:black" >
+            <th>姓名</th>
+            <th>性别</th>
+            <th>生日</th>
+            <th>手机号码</th>
+            <th>电子邮件</th>
+
         </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.name}">Jack</td>
-            <td th:text="${user.vectorId}">15</td>
+            <td th:text="${user.sex}">Jack</td>
+            <td th:text="${user.birthday}">Jack</td>
+            <td th:text="${user.phone}">Jack</td>
+            <td th:text="${user.email}">Jack</td>
+
         </tr>
 </table>
 

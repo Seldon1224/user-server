@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xml:th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>login</title>
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link href="css/reset.css" rel="stylesheet" type="text/css" />
+		<link href="css/login.css" rel="stylesheet" type="text/css" />
+		<link href="css/border.css" rel="stylesheet" type="text/css" />
+		<link href="css/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" media="all"/>
+		<script src='js/jquery.min.js'></script>
+		<script src='css/layui-v2.4.5/layui/layui.js'></script>
+		<script src='css/layui-v2.4.5/layui/layui.all.js'></script>
+		<style scoped>
+			.view-phone {
+				display: none;
+			}
+			.view-web {
+				display: flex;
+				box-sizing: border-box;
+				width: 100%;
+				height: 100vh;
+				background: #e7f2ff;
+				align-items: center;
+			}
+			.v-web-container {
+				box-sizing: border-box;
+				width: 1184px;
+				height: 640px;
+				margin: 0 auto;
+				background: url('css/image/webbg.png') no-repeat;
+				background-size: cover;
+				background-position: center;
+				overflow: hidden;
+			}
+			.v-web-login {
+				box-sizing: border-box;
+				width: 40%;
+				height: 100%;
+				padding: 0.4rem;
+				float: right;
+				overflow: hidden;
+			}
+			@media screen and (max-width:900px) {
+				.view-phone {
+					display: block;
+					box-sizing: border-box;
+					width: 100%;
+					height: 100vh;
+					background: #e7f2ff;
+				}
+				.view-web {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class='page'>
+			<!-- phone -->
+			<div class='view-phone'>
+				<!-- <header>
+					<img class='welcome-logo' src='./css/image/Welcome_.png'>
+					<h1 class='welcome-title'>辅料下单系统</h1>
+				</header> -->
+				<div class='content'>
+					<div class='login'>
+						<!-- <img class='welcome-logo' style='display:block;width: 60%;margin:0 auto' src='./css/image/Welcome_.png'> -->
+						<h1 style='font-weight:bold;font-size:30px'>Welcome!</h1>
+						<h1 class='welcome-title'>虹膜信息管理系统</h1>
+						<!-- <div class='welcome'>账号登陆</div> -->
+						<div class='message'>
+							<div class='m-header'>账号登陆</div>
+							<div class='m-border'>&nbsp;&nbsp;&nbsp;</div>
+
+							<form th:action="@{/authentication/form}" method="post">
+								<div class='form-group'>
+									<!-- <span>用户名称:</span> -->
+									<img class='loginIcon' src='css/image/username.png'>
+									<input name="username" id="username" class='login-username' type='text' value='' placeholder='账户名:' clearable  />
+								</div>
+								<div class='form-group'>
+									<!-- <span>用户密码:</span> -->
+									<img class='loginIcon' src='css/image/password.png'>
+									<input name="password" id="password" class='login-password' type='password' value='' placeholder='密码:' clearable />
+								</div>
+								<div class="form-group" th:if="${param.error}">
+									<p th:if="${session.SPRING_SECURITY_LAST_EXCEPTION}">
+									<p th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></p>
+									</p>
+								</div>
+								<button class='btn btn-primary' type="submit" >确认</button>
+
+
+							</form>
+						</div>
+						<!-- <button class='btn'>登陆</button> -->
+					</div>
+				</div>
+
+			</div>
+			<!-- web -->
+			<div class='view-web'>
+				<div class='v-web-container'>
+					<div class='v-web-login'>
+						<!-- <header>
+							<img class='welcome-logo' src='./css/image/Welcome_.png'>
+							<h1 class='welcome-title'>辅料下单系统</h1>
+						</header> -->
+						<div class='content'>
+							<div class='login'>
+								<!-- <img class='welcome-logo' style='display:block;width: 60%;margin:0 auto' src='./css/image/Welcome_.png'> -->
+								<h1 style='font-weight:bold;font-size:30px'>Welcome!</h1>
+								<h1 class='welcome-title'>虹膜信息管理系统</h1>
+								<div class='message'>
+									<div class='m-header'>账号登陆</div>
+									<div class='m-border'>&nbsp;&nbsp;&nbsp;</div>
+									<form th:action="@{/authentication/form}" method="post">
+										<div class='m-username' >
+											<img class='loginIcon' src='css/image/username.png'>
+											<input name="username" class='login-username1' type='text' value='' placeholder='账户名:' clearable  />
+										</div>
+										<div class='m-password'>
+											<img class='loginIcon' src='css/image/password.png'>
+											<input name="password" class='login-password1' type='password' value='' placeholder='密码:' clearable />
+										</div>
+										<div class="form-group" th:if="${param.error}">
+											<p th:if="${session.SPRING_SECURITY_LAST_EXCEPTION}">
+											<p th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></p>
+											</p>
+										</div>
+										<button class='btn' type="submit">确认</button>
+									</form>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			function login () {
+				if (window.innerWidth > 900) {
+					if ($('.login-username1').val() === '') {
+						layer.msg('请输入账号')
+						return
+					}
+					if ($('.login-password1').val() === '') {
+						layer.msg('请输入密码')
+						return
+					}
+				}
+				if (window.innerWidth < 900) {
+					if ($('.login-username').val() === '') {
+						layer.msg('请输入账号')
+						return
+					}
+					if ($('.login-password').val() === '') {
+						layer.msg('请输入密码')
+						return
+					}
+				}
+				layer.msg('已发送请求！')
+				// $.ajax({
+				// 	type: 'Post',
+				// 	async: false,
+				// 	url: '',
+				// 	data: {
+				// 		loginName: String($('.login-username').val()),
+    //     		loginPassword: String($('.login-password').val())
+				// 	},
+				// 	success: function (res) {
+				// 		sessionStorage.setItem('userInfo', res.data.merchantName)
+				// 		sessionStorage.name = res.data.merchantName
+				// 		sessionStorage.admin = res.data.merchantMobile
+				// 		layer.msg('登陆成功')
+				// 		setTimeout(function () {
+				// 			window.location.href = ''
+				// 		}, 1000)
+				// 	},
+				// 	error: function () {
+				// 		layer.msg('登陆失败')
+				// 	}
+				// })
+
+			}
+		</script>
+	</body>
+</html>

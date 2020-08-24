@@ -6,20 +6,21 @@
     <title>Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
-<body>
+<body >
 
 <br><br>
-<h2 style="color:green">Form</h2>
+<h2 style="color:green">检索向量</h2>
 <br><br>
 
 <form class="form-horizontal" role="form" action="#" th:action="@{/result}" th:object="${user}" method="post">
 
-    <div class="form-group" style="width:300px">
+    <div   class="form-group"  style="width:300px" >
         <label for="vector" class="col-sm-2 control-label">Vector</label>
         <div class="col-sm-10">
-            <input type="text"  th:field="*{vector}" class="form-control" id="vector" placeholder="Enter vector you want search">
+            <input type="text"   th:field="*{vector}" style="height:100px" class="form-control" id="vector" placeholder="Enter vector you want search">
         </div>
     </div>
 

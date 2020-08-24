@@ -4,6 +4,9 @@ server:
     max-http-form-post-size: -1
 
 spring:
+  servlet:
+    multipart:
+      max-file-size: 15MB
   thymeleaf:
     cache: true
   devtools:
@@ -14,7 +17,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-  security :
+  security:
     user:
       name: admin
       password: admin

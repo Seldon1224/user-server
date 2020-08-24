@@ -17,19 +17,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity
                 .authorizeRequests()
-                    .antMatchers("/signup","/result").permitAll()
-                    .anyRequest().authenticated()
+                    //.antMatchers("/signup","/result","/fileUpload","/css").permitAll()
+                    //.anyRequest().authenticated()
+                    .antMatchers("/all").authenticated()
+                    .anyRequest().permitAll()
                     .and()
                 .formLogin()
-                    .usernameParameter("username")
-                    .passwordParameter("password")
+                    .loginPage("/login2")
+                     .loginProcessingUrl("/authentication/form")
 
-                    .permitAll()
                     .and()
                 .logout()
                     .permitAll();
         httpSecurity.csrf().disable();
     }
-
-
 }

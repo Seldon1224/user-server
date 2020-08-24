@@ -1,6 +1,6 @@
 package swjtu.hmsb.userserver.controller;
 
-import com.google.gson.JsonObject;
+import com.alibaba.fastjson.JSON;
 import io.milvus.client.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,6 @@ import swjtu.hmsb.userserver.dao.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
@@ -44,18 +43,19 @@ public class MainController {
     public @ResponseBody String SignUpSubmit(@ModelAttribute User user) {
 
         myMilvus.ConnectMilvus();
-        User newUser = new User();
+       // User newUser = new User();
         List<Float> vectorList;
         List<List<Float>> vectors = new ArrayList<>();
         vectorList = User.StringToVector(user.getVector());
         vectors.add(vectorList);
         // add name
-        newUser.setName(user.getName());
+        //newUser.setName(user.getName());
 
         Long vectorId = myMilvus.InsertVector(vectors);
         //System.out.println(id.get(0));
-        newUser.setVectorId(vectorId);
-        userRepository.save(newUser);
+        //newUser.setVectorId(vectorId);
+        user.setVectorId(vectorId);
+        userRepository.save(user);
         return "saved";
     }
 
@@ -70,7 +70,8 @@ public class MainController {
         Long resultId = myMilvus.SearchVector(vectors);
         if(resultId != 0L){
             User resultrUser = userRepository.findUserByVectorId(resultId);
-            return resultrUser.toString();
+            String json = JSON.toJSONString(resultrUser);
+            return json;
         }
         else
             return "未找到该用户";
@@ -84,6 +85,10 @@ public class MainController {
 
         return "all";
     }
+    @GetMapping("/login2")
+    public String loginPage(Model model) {
+        return "login2";
+    }
 
     @GetMapping("/delete")
     public @ResponseBody String deleteAllDate(Model model){
@@ -93,7 +98,6 @@ public class MainController {
         myMilvus.DropConnect();
         userRepository.deleteAll();
         return "success";
-
     }
 
     @GetMapping("/showvectorlist")

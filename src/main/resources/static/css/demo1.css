@@ -1,0 +1,150 @@
+.body {
+	background: #eee;
+	height: 100vh;
+}
+
+.content-header {
+	padding: 0.2rem;
+	display: flex;
+	background: #fff;
+	margin-bottom: 0.2rem;
+}
+.content-h-icon {
+	height: 100%;
+	padding: 0 0.2rem;
+	text-align: center;
+	flex: 1;
+}
+.h-icon-pic {
+	width: 80%;
+	margin-bottom: 0.1rem;
+}
+@media screen and (max-width: 768px) {
+	.content-h-icon {
+		height: 100%;
+		padding: 0.2rem;
+		text-align: center;
+		flex: 1;
+	}
+}
+.content-search {
+	box-sizing: border-box;
+	display: flex;
+	padding: 0.6rem 0.6rem;
+	background: #fff;
+	margin-bottom: 0.2rem;
+}
+@media screen and (max-width: 768px) {
+	.content-search {
+		box-sizing: border-box;
+		display: flex;
+		padding: 0.6rem 0.4rem;
+		background: #fff;
+		margin-bottom: 0.2rem;
+	}
+}
+.content-s-item {
+	flex: 3;
+	border: 0.01rem solid #ccc;
+	height: 0.6rem;
+	line-height: 0.6rem;
+	padding: 0 0.2rem;
+	margin-right: 0.2rem;
+	border-radius: 0.2rem;
+}
+.content-s-img {
+	width: 0.4rem;
+	margin-right: 0.2rem;
+}
+.content-s-btn {
+	flex: 1;
+	text-align: right;
+	background: #fff;
+}
+.s-btn {
+	padding: 0.1rem 0.4rem;
+	border-radius: 0.2rem;
+	background: linear-gradient(#549fff, #8850ef);
+	color: #fff;
+}
+@media screen and (max-width: 768px) {
+	.s-btn {
+		padding: 0.1rem 0.3rem;
+		border-radius: 0.2rem;
+		background: linear-gradient(#549fff, #8850ef);
+		color: #fff;
+	}
+}
+
+.content-list {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	padding: 0.2rem 0.4rem;
+	padding-bottom: 2rem;
+}
+.lp-zone {
+	box-sizing: border-box;
+	width: 100%;
+	text-align: center;
+}
+.order-list {
+	box-sizing: border-box;
+	width: 100%;
+}
+table {
+	width: 100%;
+}
+td {
+	height: 0.6rem;
+}
+.list-line {
+	margin-top: 0.2rem;
+	border-top: 0.01rem solid #ccc;
+}
+.list-btn {
+	padding: 0.1rem 0.3rem;
+	background: linear-gradient(#ffea59, #ff9a35);
+	color: #fff;
+	border-radius: 0.2rem;
+}
+.list-btn-info {
+	padding: 0.1rem 0.2rem;
+	background: linear-gradient(#b481f1, #9e80f9);
+	color: #fff;
+	border-radius: 0.2rem;
+}
+.list-btn-confirm {
+	padding: 0.1rem 0.2rem;
+	background: linear-gradient(#ffab51, #ff876c);
+	color: #fff;
+	border-radius: 0.2rem;
+}
+.list-btn-item {
+	text-align: right;
+}
+.list-btn-state {
+	padding: 0.1rem 0.1rem;
+	background: #f8f8f8;
+	color: #999999;
+	border-radius: 0.2rem;
+	border: 0.01rem solid #eee;
+}
+.list-state-item {
+	text-align: center;
+}
+
+
+.deliveryInfo {
+	display: none;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	padding: 0.4rem;
+	line-height: 0.5rem;
+}
+
+.data {
+	display: none;
+}
