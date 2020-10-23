@@ -4,11 +4,18 @@ server:
     max-http-form-post-size: -1
 
 spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
   servlet:
     multipart:
       max-file-size: 15MB
   thymeleaf:
-    cache: true
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
   devtools:
     restart:
       enabled: true

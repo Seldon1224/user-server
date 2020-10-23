@@ -14,7 +14,9 @@ import swjtu.hmsb.userserver.dao.UserRepository;
 import swjtu.hmsb.userserver.milvus.MyMilvus;
 import swjtu.hmsb.userserver.dao.User;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -77,13 +79,37 @@ public class MainController {
             return "未找到该用户";
     }
 
-
+    @GetMapping("/index")
+    public String indexPage(Model model) {
+        Iterable<User> users = userRepository.findAll();
+        String name = "";
+        int i=0;
+        for(User u: users){
+            if(!name.equals(u.getName())){
+                i++;
+            }
+            name = u.getName();
+        }
+        model.addAttribute("num",i);
+        return "index";
+    }
     @GetMapping("/all")
     public String getMessage(Model model) {
         Iterable<User> users = userRepository.findAll();
-        model.addAttribute("users", users);
+        String name = "";
+        List<User> adduser = new ArrayList<>();
+        int i=0;
+        for(User u: users){
+            if(!name.equals(u.getName())){
+                i++;
+                u.setId((long) i);
+                adduser.add(u);
+            }
+            name = u.getName();
+        }
 
-        return "all";
+        model.addAttribute("users", adduser);
+        return "lyear_pages_doc";
     }
     @GetMapping("/login2")
     public String loginPage(Model model) {
